@@ -9,6 +9,8 @@ mkdir -p config
 if [ -n "${GOOGLE_SERVICES_JSON:-}" ]; then
   echo "Restoring google-services.json from EAS Secret..."
   echo "$GOOGLE_SERVICES_JSON" | base64 --decode > config/google-services.json
+  # Create symlink in root for compatibility
+  ln -sf config/google-services.json google-services.json
   echo "✅ google-services.json restored successfully"
 else
   echo "⚠️  GOOGLE_SERVICES_JSON environment variable not found"
@@ -18,6 +20,8 @@ fi
 if [ -n "${GOOGLE_SERVICE_INFO_PLIST:-}" ]; then
   echo "Restoring GoogleService-Info.plist from EAS Secret..."
   echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > config/GoogleService-Info.plist
+  # Create symlink in root for compatibility
+  ln -sf config/GoogleService-Info.plist GoogleService-Info.plist
   echo "✅ GoogleService-Info.plist restored successfully"
 else
   echo "⚠️  GOOGLE_SERVICE_INFO_PLIST environment variable not found"
