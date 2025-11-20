@@ -1,8 +1,8 @@
 // FormField Component - Molecule
 
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Input } from '../../atoms/Input';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Input } from "../../atoms/Input";
 
 interface FormFieldProps {
   label: string;
@@ -11,10 +11,12 @@ interface FormFieldProps {
   placeholder?: string;
   error?: string;
   secureTextEntry?: boolean;
-  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
+  keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
   multiline?: boolean;
   numberOfLines?: number;
+  showPasswordToggle?: boolean;
+  leftIcon?: keyof typeof import("@expo/vector-icons").Ionicons.glyphMap;
 }
 
 export const FormField: React.FC<FormFieldProps> = ({
@@ -24,10 +26,12 @@ export const FormField: React.FC<FormFieldProps> = ({
   placeholder,
   error,
   secureTextEntry,
-  autoCapitalize = 'sentences',
-  keyboardType = 'default',
+  autoCapitalize = "sentences",
+  keyboardType = "default",
   multiline = false,
   numberOfLines = 1,
+  showPasswordToggle = false,
+  leftIcon,
 }) => {
   return (
     <View style={styles.container}>
@@ -42,6 +46,8 @@ export const FormField: React.FC<FormFieldProps> = ({
         keyboardType={keyboardType}
         multiline={multiline}
         numberOfLines={numberOfLines}
+        showPasswordToggle={showPasswordToggle}
+        leftIcon={leftIcon}
       />
     </View>
   );
