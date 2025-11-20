@@ -173,7 +173,7 @@ export default function TasksScreen() {
           },
         ]}
       >
-        ]}>
+        
         <Pressable
           style={[
             styles.filterButton,
@@ -195,7 +195,7 @@ export default function TasksScreen() {
             All
           </Text>
         </Pressable>
-        <Pressablee
+        <Pressable
           style={[
             styles.filterButton,
             {
@@ -216,8 +216,9 @@ export default function TasksScreen() {
             Active
           </Text>
         </Pressable>
+
+
         <Pressable
-                <Pressable
           style={[
             styles.filterButton,
             {
@@ -238,7 +239,7 @@ export default function TasksScreen() {
           </Text>
         </Pressable>
       </View>
-      </View>
+
 
       {/* Task List */}
       <TaskList
