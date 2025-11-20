@@ -41,3 +41,7 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Environment-specific config files (stored in EAS Secrets)
+config/*.json
+config/*.plist

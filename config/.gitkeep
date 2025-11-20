@@ -1,0 +1,2 @@
+# This directory contains environment-specific configuration files
+# Actual config files are stored in EAS Secrets and restored during build

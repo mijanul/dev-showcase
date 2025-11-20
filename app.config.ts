@@ -19,7 +19,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: {
       supportsTablet: true,
       bundleIdentifier: `com.devshowcase.mijanul`,
-      // googleServicesFile: "./GoogleService-Info.plist",
     },
     android: {
       adaptiveIcon: {
