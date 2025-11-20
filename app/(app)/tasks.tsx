@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Alert, Modal, Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { Button } from '../../src/atoms/Button';
 import { Text } from '../../src/atoms/Text';
 import { useAuth } from '../../src/hooks/useAuth';
@@ -126,6 +126,14 @@ export default function TasksScreen() {
     setTaskDescription('');
     setSelectedTask(null);
   };
+
+  if (isLoading && !isRefreshing) {
+    return (
+      <View style={[styles.container, styles.centerContent, { backgroundColor: theme.colors.background }]}>
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -377,6 +385,10 @@ export default function TasksScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   statusBar: {
     flexDirection: 'row',
