@@ -19,7 +19,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: {
       supportsTablet: true,
       bundleIdentifier: `com.devshowcase.mijanul`,
-      googleServicesFile: "./config/GoogleService-Info.plist",
+      googleServicesFile: "./GoogleService-Info.plist",
     },
     android: {
       adaptiveIcon: {
@@ -29,7 +29,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         monochromeImage: "./assets/images/android-icon-monochrome.png",
       },
       package: `com.taskmanager.${environment}`,
-      googleServicesFile: "./config/google-services.json",
+      googleServicesFile: "./google-services.json",
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
     },
@@ -56,10 +56,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         {
           icon: "./assets/images/notification-icon.png",
           color: "#ffffff",
-          sounds: ["./assets/sounds/notification.wav"],
         },
       ],
-      "./plugins/withFirebaseConfig.js",
     ],
     experiments: {
       typedRoutes: true,

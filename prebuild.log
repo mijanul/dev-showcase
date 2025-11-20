@@ -1,0 +1,25 @@
+env: load .env.development
+env: export APP_ENV API_BASE_URL ENABLE_ANALYTICS ENABLE_CRASH_REPORTING
+! Git branch has uncommitted file changes
+› It's recommended to commit all changes before proceeding in case you want to revert generated changes.
+Git status is dirty but the command will continue because the terminal is not interactive.
+- Clearing android, ios
+✔ Cleared android, ios code
+- Creating native directories (./ios and ./android)
+✔ Created native directories
+- Updating package.json
+✔ Updated package.json
+- Running prebuild
+✖ Prebuild failed
+Error: [android.dangerous]: withAndroidDangerousBaseMod: An error occurred while configuring Android notifications. Encountered an issue resizing Android notification icon: Error: ENOENT: no such file or directory, open './assets/images/notification-icon.png'
+Error: [android.dangerous]: withAndroidDangerousBaseMod: An error occurred while configuring Android notifications. Encountered an issue resizing Android notification icon: Error: ENOENT: no such file or directory, open './assets/images/notification-icon.png'
+    at /Users/mijanul/Projects/personal-project/dev-showcase/node_modules/expo-notifications/plugin/build/withNotificationsAndroid.js:146:19
+    at async Promise.all (index 0)
+    at async writeNotificationIconImageFilesAsync (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/expo-notifications/plugin/build/withNotificationsAndroid.js:128:5)
+    at async setNotificationIconAsync (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/expo-notifications/plugin/build/withNotificationsAndroid.js:95:9)
+    at async /Users/mijanul/Projects/personal-project/dev-showcase/node_modules/expo-notifications/plugin/build/withNotificationsAndroid.js:42:13
+    at async action (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/@expo/config-plugins/build/plugins/withMod.js:199:23)
+    at async interceptingMod (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/@expo/config-plugins/build/plugins/withMod.js:104:21)
+    at async interceptingMod (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/@expo/config-plugins/build/plugins/withMod.js:104:21)
+    at async interceptingMod (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/@expo/config-plugins/build/plugins/withMod.js:104:21)
+    at async interceptingMod (/Users/mijanul/Projects/personal-project/dev-showcase/node_modules/@expo/config-plugins/build/plugins/withMod.js:104:21)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "295387290450",
+    "project_id": "dev-showcase-eb5e8",
+    "storage_bucket": "dev-showcase-eb5e8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295387290450:android:069616c00e3dbe66f3788b",
+        "android_client_info": {
+          "package_name": "com.devshowcase.mijanul"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-QbYgrEs-HRN0KSZOqT89j2k7jZd2uq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
