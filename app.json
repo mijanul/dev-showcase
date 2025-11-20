@@ -8,6 +8,7 @@
     "scheme": "devshowcase",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "owner": "qa_mijanul",
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.devshowcase.mijanul"
@@ -45,6 +46,15 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "environment": "development",
+      "enableAnalytics": false,
+      "enableCrashReporting": false,
+      "router": {},
+      "eas": {
+        "projectId": "f09685b7-6e49-41d7-8270-f1dce8ee96c1"
+      }
     }
   }
 }

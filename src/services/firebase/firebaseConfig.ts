@@ -1,27 +1,32 @@
 // Firebase Configuration
 
-import Constants from 'expo-constants';
-import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Auth, getAuth } from 'firebase/auth';
-import { Firestore, getFirestore } from 'firebase/firestore';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Constants from "expo-constants";
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { Auth, getReactNativePersistence, initializeAuth } from "firebase/auth";
+import { Firestore, getFirestore } from "firebase/firestore";
 
 // Get config from app.config.ts extra field
 const extra = Constants.expoConfig?.extra || {};
 
 const firebaseConfig = {
-  apiKey: extra.firebaseApiKey || '',
-  authDomain: extra.firebaseAuthDomain || '',
-  projectId: extra.firebaseProjectId || '',
-  storageBucket: extra.firebaseStorageBucket || '',
-  messagingSenderId: extra.firebaseMessagingSenderId || '',
-  appId: extra.firebaseAppId || '',
+  apiKey: extra.firebaseApiKey || "",
+  authDomain: extra.firebaseAuthDomain || "",
+  projectId: extra.firebaseProjectId || "",
+  storageBucket: extra.firebaseStorageBucket || "",
+  messagingSenderId: extra.firebaseMessagingSenderId || "",
+  appId: extra.firebaseAppId || "",
 };
 
 // Validate configuration
-const isConfigValid = Object.values(firebaseConfig).every(value => value !== '');
+const isConfigValid = Object.values(firebaseConfig).every(
+  (value) => value !== ""
+);
 
 if (!isConfigValid) {
-  console.warn('Firebase configuration is incomplete. Please update your .env file.');
+  console.warn(
+    "Firebase configuration is incomplete. Please update your .env file."
+  );
 }
 
 // Initialize Firebase
@@ -31,15 +36,17 @@ let firestore: Firestore;
 
 try {
   app = initializeApp(firebaseConfig);
-  
-  // Initialize Auth (persistence is handled automatically by Firebase)
-  auth = getAuth(app);
-  
+
+  // Initialize Auth with AsyncStorage persistence for React Native
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
+
   firestore = getFirestore(app);
-  
-  console.log('Firebase initialized successfully');
+
+  console.log("Firebase initialized successfully");
 } catch (error) {
-  console.error('Firebase initialization error:', error);
+  console.error("Firebase initialization error:", error);
   throw error;
 }
 
