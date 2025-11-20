@@ -2,26 +2,19 @@
 
 set -euo pipefail
 
-# Create config directory if it doesn't exist
-mkdir -p config
-
-# Restore google-services.json from EAS Secret
+# Restore google-services.json from EAS Secret to root directory
 if [ -n "${GOOGLE_SERVICES_JSON:-}" ]; then
   echo "Restoring google-services.json from EAS Secret..."
-  echo "$GOOGLE_SERVICES_JSON" | base64 --decode > config/google-services.json
-  # Create symlink in root for compatibility
-  ln -sf config/google-services.json google-services.json
+  echo "$GOOGLE_SERVICES_JSON" | base64 --decode > google-services.json
   echo "✅ google-services.json restored successfully"
 else
   echo "⚠️  GOOGLE_SERVICES_JSON environment variable not found"
 fi
 
-# Restore GoogleService-Info.plist from EAS Secret
+# Restore GoogleService-Info.plist from EAS Secret to root directory
 if [ -n "${GOOGLE_SERVICE_INFO_PLIST:-}" ]; then
   echo "Restoring GoogleService-Info.plist from EAS Secret..."
-  echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > config/GoogleService-Info.plist
-  # Create symlink in root for compatibility
-  ln -sf config/GoogleService-Info.plist GoogleService-Info.plist
+  echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 --decode > GoogleService-Info.plist
   echo "✅ GoogleService-Info.plist restored successfully"
 else
   echo "⚠️  GOOGLE_SERVICE_INFO_PLIST environment variable not found"

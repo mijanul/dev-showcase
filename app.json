@@ -11,8 +11,7 @@
     "owner": "qa_mijanul",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.devshowcase.mijanul",
-      "googleServicesFile": "./config/GoogleService-Info.plist"
+      "bundleIdentifier": "com.devshowcase.mijanul"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,8 +22,7 @@
       },
       "package": "com.devshowcase.mijanul",
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
-      "googleServicesFile": "./config/google-services.json"
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
