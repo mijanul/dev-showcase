@@ -65,20 +65,20 @@ export const AuthForm: React.FC<AuthFormProps> = ({
     await onSubmit(data.email, data.password);
   };
 
-  const validateEmail = (value: string) => {
+  const validateEmail = (value: string | undefined) => {
     if (!value) return "Email is required";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(value)) return "Invalid email address";
     return true;
   };
 
-  const validatePassword = (value: string) => {
+  const validatePassword = (value: string | undefined) => {
     if (!value) return "Password is required";
     if (value.length < 8) return "Password must be at least 8 characters";
     return true;
   };
 
-  const validateConfirmPassword = (value: string) => {
+  const validateConfirmPassword = (value: string | undefined) => {
     if (mode !== "signup") return true;
     if (!value) return "Please confirm your password";
     if (value !== password) return "Passwords do not match";

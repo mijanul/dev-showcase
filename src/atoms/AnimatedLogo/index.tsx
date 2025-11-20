@@ -3,12 +3,12 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withRepeat,
-    withSequence,
-    withSpring,
-    withTiming,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../Text';
@@ -85,7 +85,7 @@ export const AnimatedLogo: React.FC<AnimatedLogoProps> = ({ size = 100 }) => {
               weight="bold"
               style={{ color: '#FFFFFF', fontSize: size * 0.35 }}
             >
-              DS
+              M
             </Text>
           </View>
         </View>

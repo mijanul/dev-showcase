@@ -112,12 +112,14 @@ export const Input: React.FC<InputProps> = ({
               paddingRight: showPasswordToggle ? 48 : theme.spacing.md,
               fontSize: theme.typography.fontSize.base,
               color: theme.colors.text,
+              paddingLeft: leftIcon ? 40: 0
             },
             style,
           ]}
           placeholderTextColor={theme.colors.textTertiary}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          
           secureTextEntry={actualSecureTextEntry}
           {...textInputProps}
         />
@@ -168,6 +170,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
+    
   },
   leftIconContainer: {
     position: "absolute",
@@ -176,6 +179,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: "center",
     zIndex: 1,
+    
   },
   passwordToggle: {
     position: "absolute",
