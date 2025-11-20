@@ -13,9 +13,7 @@ const withFirebaseConfig = (config) => {
           fs.mkdirSync(configDir, { recursive: true });
         }
         const filePath = path.join(configDir, "google-services.json");
-        const content = Buffer.from(googleServicesJson, "base64").toString(
-          "utf-8"
-        );
+        const content = atob(googleServicesJson);
         fs.writeFileSync(filePath, content);
         console.log("✅ google-services.json restored from EAS Secret");
       }
@@ -35,9 +33,7 @@ const withIOSFirebaseConfig = (config) => {
           fs.mkdirSync(configDir, { recursive: true });
         }
         const filePath = path.join(configDir, "GoogleService-Info.plist");
-        const content = Buffer.from(googleServiceInfoPlist, "base64").toString(
-          "utf-8"
-        );
+        const content = atob(googleServiceInfoPlist);
         fs.writeFileSync(filePath, content);
         console.log("✅ GoogleService-Info.plist restored from EAS Secret");
       }
