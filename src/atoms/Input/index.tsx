@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import {
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
   TextInputProps,
-  TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
@@ -122,17 +122,16 @@ export const Input: React.FC<InputProps> = ({
           {...textInputProps}
         />
         {showPasswordToggle && (
-          <TouchableOpacity
+          <Pressable
             style={styles.passwordToggle}
             onPress={togglePasswordVisibility}
-            activeOpacity={0.7}
           >
             <Icon
               name={isPasswordVisible ? "eye-off-outline" : "eye-outline"}
               size={22}
               color={theme.colors.textSecondary}
             />
-          </TouchableOpacity>
+          </Pressable>
         )}
       </Animated.View>
       {error && (

@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Alert, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Alert, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { Button } from '../../src/atoms/Button';
 import { Text } from '../../src/atoms/Text';
 import { useAuth } from '../../src/hooks/useAuth';
@@ -173,7 +173,8 @@ export default function TasksScreen() {
           },
         ]}
       >
-        <TouchableOpacity
+        ]}>
+        <Pressable
           style={[
             styles.filterButton,
             {
@@ -193,8 +194,8 @@ export default function TasksScreen() {
           >
             All
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </Pressable>
+        <Pressablee
           style={[
             styles.filterButton,
             {
@@ -214,8 +215,9 @@ export default function TasksScreen() {
           >
             Active
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </Pressable>
+        <Pressable
+                <Pressable
           style={[
             styles.filterButton,
             {
@@ -234,7 +236,8 @@ export default function TasksScreen() {
           >
             Completed
           </Text>
-        </TouchableOpacity>
+        </Pressable>
+      </View>
       </View>
 
       {/* Task List */}
@@ -248,7 +251,7 @@ export default function TasksScreen() {
       />
 
       {/* Add Task Button */}
-      <TouchableOpacity
+      <Pressable
         style={[
           styles.fab,
           {
@@ -259,7 +262,7 @@ export default function TasksScreen() {
         onPress={() => setIsAddModalVisible(true)}
       >
         <Ionicons name="add" size={32} color={theme.colors.textInverse} />
-      </TouchableOpacity>
+      </Pressable>
 
       {/* Add Task Modal */}
       <Modal

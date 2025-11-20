@@ -1,20 +1,20 @@
 // Button Component - Atomic Design
 
-import React from 'react';
+import React from "react";
 import {
-    ActivityIndicator,
-    Text,
-    TextStyle,
-    TouchableOpacity,
-    ViewStyle
-} from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+  ActivityIndicator,
+  Pressable,
+  Text,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
+import { useTheme } from "../../hooks/useTheme";
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'small' | 'medium' | 'large';
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "small" | "medium" | "large";
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
@@ -25,8 +25,8 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   title,
   onPress,
-  variant = 'primary',
-  size = 'medium',
+  variant = "primary",
+  size = "medium",
   disabled = false,
   loading = false,
   fullWidth = false,
@@ -38,9 +38,9 @@ export const Button: React.FC<ButtonProps> = ({
   const getButtonStyle = (): ViewStyle => {
     const baseStyle: ViewStyle = {
       borderRadius: theme.borderRadius.base,
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row',
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
     };
 
     // Size styles
@@ -62,18 +62,22 @@ export const Button: React.FC<ButtonProps> = ({
     // Variant styles
     const variantStyles: Record<string, ViewStyle> = {
       primary: {
-        backgroundColor: disabled ? theme.colors.textTertiary : theme.colors.primary,
+        backgroundColor: disabled
+          ? theme.colors.textTertiary
+          : theme.colors.primary,
       },
       secondary: {
-        backgroundColor: disabled ? theme.colors.textTertiary : theme.colors.secondary,
+        backgroundColor: disabled
+          ? theme.colors.textTertiary
+          : theme.colors.secondary,
       },
       outline: {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderWidth: 1,
         borderColor: disabled ? theme.colors.border : theme.colors.primary,
       },
       ghost: {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
       },
     };
 
@@ -81,7 +85,7 @@ export const Button: React.FC<ButtonProps> = ({
       ...baseStyle,
       ...sizeStyles[size],
       ...variantStyles[variant],
-      ...(fullWidth && { width: '100%' }),
+      ...(fullWidth && { width: "100%" }),
       ...(disabled && { opacity: 0.6 }),
     };
   };
@@ -106,20 +110,23 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
       style={[getButtonStyle(), style]}
       onPress={onPress}
       disabled={disabled || loading}
-      activeOpacity={0.7}
     >
       {loading ? (
         <ActivityIndicator
-          color={variant === 'primary' || variant === 'secondary' ? theme.colors.textInverse : theme.colors.primary}
+          color={
+            variant === "primary" || variant === "secondary"
+              ? theme.colors.textInverse
+              : theme.colors.primary
+          }
           size="small"
         />
       ) : (
         <Text style={[getTextStyle(), textStyle]}>{title}</Text>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 };

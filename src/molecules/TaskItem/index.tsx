@@ -1,19 +1,19 @@
 // TaskItem Component - Molecule
 
-import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Pressable, StyleSheet, View } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming
-} from 'react-native-reanimated';
-import { Checkbox } from '../../atoms/Checkbox';
-import { Text } from '../../atoms/Text';
-import { useTheme } from '../../hooks/useTheme';
-import { formatDate } from '../../utils/helpers';
-import { Task } from '../../utils/types';
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import { Checkbox } from "../../atoms/Checkbox";
+import { Text } from "../../atoms/Text";
+import { useTheme } from "../../hooks/useTheme";
+import { formatDate } from "../../utils/helpers";
+import { Task } from "../../utils/types";
 
 interface TaskItemProps {
   task: Task;
@@ -72,24 +72,18 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           },
         ]}
       >
-        <TouchableOpacity
-          style={[
-            styles.actionButton,
-            { backgroundColor: theme.colors.info },
-          ]}
+        <Pressable
+          style={[styles.actionButton, { backgroundColor: theme.colors.info }]}
           onPress={handleEdit}
         >
           <Ionicons name="pencil" size={20} color={theme.colors.textInverse} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.actionButton,
-            { backgroundColor: theme.colors.error },
-          ]}
+        </Pressable>
+        <Pressable
+          style={[styles.actionButton, { backgroundColor: theme.colors.error }]}
           onPress={handleDelete}
         >
           <Ionicons name="trash" size={20} color={theme.colors.textInverse} />
-        </TouchableOpacity>
+        </Pressable>
       </View>
 
       {/* Task Content */}
@@ -109,17 +103,13 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           ]}
         >
           <View style={styles.taskRow}>
-            <Checkbox
-              checked={task.completed}
-              onToggle={onToggle}
-              size={24}
-            />
+            <Checkbox checked={task.completed} onToggle={onToggle} size={24} />
             <View style={styles.taskInfo}>
               <Text
                 variant="body"
                 weight="medium"
                 style={{
-                  textDecorationLine: task.completed ? 'line-through' : 'none',
+                  textDecorationLine: task.completed ? "line-through" : "none",
                   opacity: task.completed ? 0.6 : 1,
                 }}
               >
@@ -131,7 +121,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                   color="textSecondary"
                   style={{
                     marginTop: theme.spacing.xs,
-                    textDecorationLine: task.completed ? 'line-through' : 'none',
+                    textDecorationLine: task.completed
+                      ? "line-through"
+                      : "none",
                     opacity: task.completed ? 0.6 : 1,
                   }}
                 >
@@ -142,7 +134,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                 <Text variant="caption" color="textTertiary">
                   {formatDate(task.createdAt)}
                 </Text>
-                {task.syncStatus === 'pending' && (
+                {task.syncStatus === "pending" && (
                   <View
                     style={[
                       styles.syncBadge,
@@ -172,44 +164,44 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 const styles = StyleSheet.create({
   container: {
     marginBottom: 12,
-    position: 'relative',
+    position: "relative",
   },
   actionsContainer: {
-    position: 'absolute',
+    position: "absolute",
     right: 0,
     top: 0,
     bottom: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
     paddingRight: 8,
   },
   actionButton: {
     width: 60,
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
     marginLeft: 8,
     borderRadius: 8,
   },
   taskContent: {
-    width: '100%',
+    width: "100%",
   },
   taskRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    alignItems: "flex-start",
   },
   taskInfo: {
     flex: 1,
     marginLeft: 12,
   },
   metaRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 4,
   },
   syncBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

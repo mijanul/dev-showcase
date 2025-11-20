@@ -1,14 +1,14 @@
 // Checkbox Component - Atomic Design
 
-import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Pressable, StyleSheet } from "react-native";
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withSpring
-} from 'react-native-reanimated';
-import { useTheme } from '../../hooks/useTheme';
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+import { useTheme } from "../../hooks/useTheme";
 
 interface CheckboxProps {
   checked: boolean;
@@ -38,10 +38,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   }));
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onToggle}
       disabled={disabled}
-      activeOpacity={0.7}
       style={[
         styles.container,
         {
@@ -50,7 +49,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           borderRadius: theme.borderRadius.sm,
           borderWidth: 2,
           borderColor: checked ? theme.colors.primary : theme.colors.border,
-          backgroundColor: checked ? theme.colors.primary : 'transparent',
+          backgroundColor: checked ? theme.colors.primary : "transparent",
           opacity: disabled ? 0.5 : 1,
         },
       ]}
@@ -64,13 +63,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           />
         )}
       </Animated.View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

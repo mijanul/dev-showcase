@@ -2,7 +2,7 @@
 
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { TextStyle, TouchableOpacity, ViewStyle } from "react-native";
+import { Pressable, TextStyle, ViewStyle } from "react-native";
 import { useTheme } from "../../hooks/useTheme";
 
 interface IconProps {
@@ -27,13 +27,9 @@ export const Icon: React.FC<IconProps> = ({
 
   if (onPress) {
     return (
-      <TouchableOpacity
-        onPress={onPress}
-        style={containerStyle}
-        activeOpacity={0.7}
-      >
+      <Pressable onPress={onPress} style={containerStyle}>
         <Ionicons name={name} size={size} color={iconColor} style={style} />
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 
