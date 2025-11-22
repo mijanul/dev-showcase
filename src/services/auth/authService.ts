@@ -2,12 +2,12 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-    createUserWithEmailAndPassword,
-    User as FirebaseUser,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signOut,
-    UserCredential,
+  createUserWithEmailAndPassword,
+  User as FirebaseUser,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  UserCredential,
 } from 'firebase/auth';
 import { STORAGE_KEYS } from '../../utils/constants';
 import { User } from '../../utils/types';
@@ -15,12 +15,25 @@ import { auth } from '../firebase/firebaseConfig';
 
 class AuthService {
   /**
+   * Check if Firebase is properly initialized
+   */
+  private ensureFirebaseInitialized(): void {
+    if (!auth) {
+      throw new Error(
+        'Firebase is not configured. Please check your environment variables and restart the app.'
+      );
+    }
+  }
+
+  /**
    * Sign up with email and password
    */
   async signUp(email: string, password: string): Promise<User> {
+    this.ensureFirebaseInitialized();
+    
     try {
       const userCredential: UserCredential = await createUserWithEmailAndPassword(
-        auth,
+        auth!,
         email,
         password
       );
@@ -39,9 +52,11 @@ class AuthService {
    * Login with email and password
    */
   async login(email: string, password: string): Promise<User> {
+    this.ensureFirebaseInitialized();
+    
     try {
       const userCredential: UserCredential = await signInWithEmailAndPassword(
-        auth,
+        auth!,
         email,
         password
       );
@@ -60,8 +75,10 @@ class AuthService {
    * Logout
    */
   async logout(): Promise<void> {
+    this.ensureFirebaseInitialized();
+    
     try {
-      await signOut(auth);
+      await signOut(auth!);
       await this.clearUserData();
     } catch (error: any) {
       console.error('Logout error:', error);
@@ -74,6 +91,15 @@ class AuthService {
    */
   async getCurrentUser(): Promise<User | null> {
     try {
+      // If Firebase is not initialized, try to get from storage
+      if (!auth) {
+        const userData = await AsyncStorage.getItem(STORAGE_KEYS.USER_DATA);
+        if (userData) {
+          return JSON.parse(userData);
+        }
+        return null;
+      }
+      
       const currentUser = auth.currentUser;
       
       if (currentUser) {
@@ -97,6 +123,11 @@ class AuthService {
    * Listen to auth state changes
    */
   onAuthStateChange(callback: (user: User | null) => void): () => void {
+    if (!auth) {
+      console.warn('Firebase not initialized, auth state listener not available');
+      return () => {}; // Return empty unsubscribe function
+    }
+    
     return onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
         const user = this.mapFirebaseUser(firebaseUser);

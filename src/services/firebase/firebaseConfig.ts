@@ -1,9 +1,8 @@
 // Firebase Configuration
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { Auth, getReactNativePersistence, initializeAuth } from "firebase/auth";
+import { Auth, getAuth } from "firebase/auth";
 import { Firestore, getFirestore } from "firebase/firestore";
 
 // Get config from app.config.ts extra field
@@ -30,24 +29,34 @@ if (!isConfigValid) {
 }
 
 // Initialize Firebase
-let app: FirebaseApp;
-let auth: Auth;
-let firestore: Firestore;
+let app: FirebaseApp | undefined;
+let auth: Auth | undefined;
+let firestore: Firestore | undefined;
 
-try {
-  app = initializeApp(firebaseConfig);
+if (isConfigValid) {
+  try {
+    app = initializeApp(firebaseConfig);
 
-  // Initialize Auth with AsyncStorage persistence for React Native
-  auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(AsyncStorage),
+    // Initialize Auth - Firebase v10+ handles persistence automatically for React Native
+    auth = getAuth(app);
+
+    firestore = getFirestore(app);
+
+    console.log("✅ Firebase initialized successfully");
+  } catch (error) {
+    console.error("❌ Firebase initialization error:", error);
+    console.warn("App will continue without Firebase. Please check your configuration.");
+  }
+} else {
+  console.warn("⚠️ Firebase configuration is incomplete. Firebase services will not be available.");
+  console.log("📋 Current config values:", {
+    apiKey: extra.firebaseApiKey ? "✓ Set" : "✗ Missing",
+    authDomain: extra.firebaseAuthDomain ? "✓ Set" : "✗ Missing",
+    projectId: extra.firebaseProjectId ? "✓ Set" : "✗ Missing",
+    storageBucket: extra.firebaseStorageBucket ? "✓ Set" : "✗ Missing",
+    messagingSenderId: extra.firebaseMessagingSenderId ? "✓ Set" : "✗ Missing",
+    appId: extra.firebaseAppId ? "✓ Set" : "✗ Missing",
   });
-
-  firestore = getFirestore(app);
-
-  console.log("Firebase initialized successfully");
-} catch (error) {
-  console.error("Firebase initialization error:", error);
-  throw error;
 }
 
 export { app, auth, firestore };
